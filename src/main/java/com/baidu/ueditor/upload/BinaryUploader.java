@@ -20,7 +20,7 @@ import java.util.Map;
 
 public class BinaryUploader {
 
-   public static State save(HttpServletRequest request, Map<String, Object> conf) {
+    public static State save(HttpServletRequest request, Map<String, Object> conf) {
         boolean isAjaxUpload = request.getHeader("X_Requested_With") != null;
         if (!ServletFileUpload.isMultipartContent(request)) {
             return new BaseState(false, AppInfo.NOT_MULTIPART_CONTENT);

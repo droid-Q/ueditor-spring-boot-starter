@@ -1,6 +1,7 @@
 package com.baidu.ueditor;
 
 import com.baidu.ueditor.define.ActionMap;
+import com.baidu.ueditor.spring.EditorController;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -123,6 +124,15 @@ final class ConfigManager {
         String configContent = this.readFile(this.configFile);
         try {
             this.jsonConfig = new JSONObject(configContent);
+            if(EditorController.properties.getLocal().getHost()!=null){
+                this.jsonConfig.put("imageUrlPrefix", EditorController.properties.getLocal().getHost());
+                this.jsonConfig.put("scrawlUrlPrefix", EditorController.properties.getLocal().getHost());
+                this.jsonConfig.put("snapscreenUrlPrefix", EditorController.properties.getLocal().getHost());
+                this.jsonConfig.put("videoUrlPrefix", EditorController.properties.getLocal().getHost());
+                this.jsonConfig.put("imageManagerUrlPrefix", EditorController.properties.getLocal().getHost());
+                this.jsonConfig.put("fileManagerUrlPrefix", EditorController.properties.getLocal().getHost());
+            }
+
         } catch (Exception e) {
             this.jsonConfig = null;
         }
