@@ -75,7 +75,11 @@ public class ImageHunter {
             String physicalPath = PathFormat.format(EditorController.properties.getLocal().getPhysicalPath() + "/" + savePath);
             State state = StorageManager.saveFileByInputStream(connection.getInputStream(), physicalPath);
             if (state.isSuccess()) {
-                state.putInfo("url", PathFormat.format(this.contextPath + "/" + EditorController.properties.getLocal().getUrlPrefix() + savePath));
+                if (EditorController.properties.getLocal().getGatewayPrefix() == null) {
+                    EditorController.properties.getLocal().setGatewayPrefix("");
+                }
+                state.putInfo("url", PathFormat.format(EditorController.properties.getLocal().getGatewayPrefix() +
+                        this.contextPath + "/" + EditorController.properties.getLocal().getUrlPrefix() + savePath));
                 state.putInfo("source", urlStr);
             }
             return state;

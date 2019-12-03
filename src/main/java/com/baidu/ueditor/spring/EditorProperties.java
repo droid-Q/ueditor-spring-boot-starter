@@ -36,6 +36,12 @@ public class EditorProperties {
          * 资源访问前缀
          */
         private String urlPrefix;
+
+        /**
+         * @author gujiaqi
+         * @category gateway前缀
+         */
+        private String gatewayPrefix;
         /**
          * 存储文件的绝对路径 必须使用标准路径"/"作为分隔符
          * 默认为"/"即当前项目所在磁盘根目录
