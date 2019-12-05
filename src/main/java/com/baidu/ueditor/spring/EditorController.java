@@ -56,6 +56,10 @@ public class EditorController {
     public void server(HttpServletRequest request, HttpServletResponse response) {
         ServletOutputStream out = null;
         try {
+            response.setHeader("Access-Control-Allow-Origin", "*");
+            response.setHeader("Access-Control-Allow-Methods", "POST,GET,OPTIONS");
+            response.setHeader("Access-Control-Allow-Headers", "X-Requested-With,X_Requested_With,Authentication");
+            response.setContentType("application/json;charset=utf-8");
             out = response.getOutputStream();
             out.print(new ActionEnter(request, properties.getConfigFile()).exec());
         } catch (IOException e) {
