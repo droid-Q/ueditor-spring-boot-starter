@@ -6,7 +6,7 @@ import com.baidu.ueditor.define.BaseState;
 import com.baidu.ueditor.define.FileType;
 import com.baidu.ueditor.define.State;
 import com.baidu.ueditor.spring.EditorController;
-import org.apache.tomcat.util.codec.binary.Base64;
+import org.springframework.util.Base64Utils;
 
 import java.util.Map;
 
@@ -32,7 +32,7 @@ public class Base64Uploader {
     }
 
     private static byte[] decode(String content) {
-        return Base64.decodeBase64(content);
+        return Base64Utils.decodeFromString(content);
     }
 
     private static boolean validSize(byte[] data, long length) {

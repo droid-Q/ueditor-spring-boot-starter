@@ -4,8 +4,8 @@ import com.baidu.ueditor.PathFormat;
 import com.baidu.ueditor.define.*;
 import com.baidu.ueditor.spring.EditorController;
 import com.baidu.ueditor.spring.EditorUploader;
-import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.stereotype.Component;
+import org.springframework.util.Base64Utils;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -60,7 +60,7 @@ public class QiniuUploader implements EditorUploader {
     public State base64Upload(HttpServletRequest request, Map<String, Object> conf) {
         String filedName = (String) conf.get("fieldName");
         String content = request.getParameter(filedName);
-        byte[] data = Base64.decodeBase64(content);
+        byte[] data = Base64Utils.decodeFromString(content);
         long maxSize = (Long) conf.get("maxSize");
         // 文件大小超出限制
         if (data.length > maxSize) {
